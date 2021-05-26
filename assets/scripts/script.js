@@ -2,6 +2,9 @@ const inputTask = document.querySelector(".input-task");
 const buttonTask = document.querySelector(".btn-task");
 const tasks = document.querySelector(".tasks");
 
+
+inputTask.setAttribute('class','input-task');
+
 inputTask.addEventListener("keypress", function (event) {
   if (event.keyCode === 13) {
     //verify the key of enter
@@ -44,6 +47,7 @@ function addTask(inputText) { //create 1 task
 
 function createLi() { //createa 1 li
   const li = document.createElement("li");
+  li.setAttribute('class','list-lis');
   return li;
 }
 
@@ -52,10 +56,35 @@ document.addEventListener("click", function (event) {  //verify if element conta
 
   if (element.classList.contains("remove")) {  //(53)
     element.parentElement.remove(); //remove the element in case the tasks created
+    saveTasks();
   }
 });
 
 
 function saveTasks(){
-  const 
+  const liTasks = tasks.querySelectorAll('li');
+  const listTasks = [];
+
+  for(let task of liTasks){
+    let taskText = task.innerText;
+    taskText = taskText.replace('Remove','').trim();
+    listTasks.push(taskText);
+  }
+
+  const tasksJSON = JSON.stringify(listTasks); //create a String of listTasks converted to JSON
+  localStorage.setItem('tasks', tasksJSON); //add the string up line(69) to a database in browser
+  
 }
+
+
+function addTasksSaved(){
+  const tasks = localStorage.getItem('tasks');
+  const listOfTasks = JSON.parse(tasks);
+  console.log(tasks);
+
+  for(let task of listOfTasks){
+    addTask(task);
+  }
+}
+
+addTasksSaved();
