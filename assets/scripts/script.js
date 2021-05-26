@@ -1,19 +1,37 @@
-const inputTask = document.querySelector('.input-task');
-const buttonTask = document.querySelector('.btn-task');
-const tasks = document.querySelector('tasks');
+const inputTask = document.querySelector(".input-task"); 
+const buttonTask = document.querySelector(".btn-task");
+const tasks = document.querySelector(".tasks");
 
+inputTask.addEventListener("keypress", function (event) { 
+  if (event.keyCode === 13) { //verify the key of enter
+    if (!inputTask) return; //if is empty
 
-buttonTask.addEventListener('click',function(){
-  if(!inputTask.value) return;
-  createTask(inputTask.value);
+    addTask(inputTask.value); //else 
+    cleanInput();
+  }
 });
 
-function createTask(textInput){
-  const li = createLi();
+buttonTask.addEventListener("click", function () {
+  //eventButton
 
+  if (!inputTask.value) return;
+
+  addTask(inputTask.value);
+  cleanInput();
+});
+
+function cleanInput() {
+  inputTask.value = "";
+  inputTask.focus();
 }
 
-function createLi(){  
-  const li = document.createElement('li');
+function addTask(inputText) { 
+  const li = createLi();
+  li.innerHTML = inputText;
+  tasks.appendChild(li);
+}
+
+function createLi() {
+  const li = document.createElement("li");
   return li;
 }
