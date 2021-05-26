@@ -1,0 +1,34 @@
+:root {
+  --purple-light: #a4508b;
+  --purple-dark: #5f0a87;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #00b712;
+  background-image: linear-gradient(315deg, #00b712 0%, #5aff15 74%);
+  background-repeat: no-repeat;
+  font-family: sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background-color: whitesmoke;
+  height: 400px;
+  width: 800px;
+  margin: 100px auto;
+  border-radius: 8px;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
